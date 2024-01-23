@@ -17,15 +17,15 @@ import java.util.List;
 @AllArgsConstructor
 public class Controller {
     private final TaskService taskService;
-    @GetMapping("/all")
+    @GetMapping("/task")
     public List<Task> getTask(){
         return taskService.getTasks();
     }
-    @PostMapping("/add")
+    @PostMapping("/task")
     public Task addTask(@RequestBody Task task){
         return taskService.save(task);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/task/{id}")
     public ResponseEntity<?> addTask(@RequestBody Task taskPara, @PathVariable Long id) {
         if (taskService.existById(id)) {
             Task task=taskService.getTaskById(id).orElseThrow(()->new EntityNotFoundException("Requested Task not found"));
